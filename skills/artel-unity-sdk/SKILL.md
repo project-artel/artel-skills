@@ -122,3 +122,12 @@ Registered means: `artel game list --project <id>` shows the instance as connect
 
 - Add cheats and behaviors so the QA agent can reach states quickly: artel-game-functions skill.
 - Run QA from the terminal: artel-cli skill.
+
+## References
+
+Read these when a step here is not enough; they are the source this skill was written from.
+
+- [SDK repository README](https://github.com/project-artel/artel-sdk/blob/develop/README.md) — install URL, launch arguments
+- [Package README](https://github.com/project-artel/artel-sdk/blob/develop/Packages/kr.artel.sdk/README.md) — runtime connection, login flow, input, scanning, reset
+- [Protocol](https://github.com/project-artel/artel-sdk/blob/develop/docs/protocol.md) — every action and frame the SDK speaks
+- [Architecture](https://github.com/project-artel/artel-sdk/blob/develop/docs/architecture.md) and [ADRs](https://github.com/project-artel/artel-sdk/tree/develop/docs/adr)

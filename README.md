@@ -29,6 +29,10 @@ npx skills add project-artel/artel-skills --list
 
 처음이라면 `artel-unity-sdk` → `artel-cli` → `artel-game-functions` 순서로 쓰면 됩니다.
 
+각 skill 끝의 `References` 절에 근거 문서를 링크했습니다. skill 만으로 부족할 때 agent 가 그 문서를 읽습니다.
+
+다음에 어떤 skill 을 만들면 좋은지는 [어떤 것을 skill 로 만들면 좋은가](docs/skill-candidates.md) 에 기준과 후보로 정리했습니다.
+
 ## 구조
 
 [`skills`](https://github.com/vercel-labs/skills) CLI 가 찾는 구조를 따릅니다.

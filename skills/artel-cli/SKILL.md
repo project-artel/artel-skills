@@ -105,3 +105,9 @@ the artel-game-functions skill.
 | `sdk_disconnected` on `qa run` | the game is not running or not connected; `artel game list` |
 | `upstream_unavailable` on `qa run` | the server cannot reach the agent server |
 | Two instances with the same id when launching several builds at once | serialize `artel game start` (for example with `flock`) and run the QA runs in parallel |
+
+## References
+
+- [CLI README](https://github.com/project-artel/artel-cli/blob/main/README.md) — every command group and flag
+- [artel.kr/cli.md](https://artel.kr/cli.md) — step-by-step install instructions written for agents
+- `artel <group> --help` — the installed version's exact flags

@@ -87,3 +87,8 @@ agent judges the screen the action produced, not the one before it.
 - No cheat or behavior tools yet; game functions (artel-game-functions skill) need the hosted stack.
 - No test case generation, scenario feasibility check, dashboard, or knowledge search.
 - macOS scripts in the repository build the sample; on Windows build with the Unity command line.
+
+## References
+
+- [artel-mcp-poc README](https://github.com/project-artel/artel-mcp-poc/blob/main/README.md) — setup, tools, layout, what is missing
+- [SDK protocol](https://github.com/project-artel/artel-sdk/blob/develop/docs/protocol.md) — the socket protocol artel-mcp answers

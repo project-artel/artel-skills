@@ -216,3 +216,11 @@ Results seen on WordVenture (2026-10-16): `go_to_scene Battle` → `loading=Turn
 | `no active <Component>` / `<n> <Component> objects; pass target as one of: ...` | instance cheat without a single live target |
 | `cheat not allowed in this run: <name>` | the run or test case does not allow it (server side) |
 | `<ExceptionType>: <message>` | your cheat threw; fix the cheat |
+
+## References
+
+- [Package README, "Cheats and behaviors for the QA agent"](https://github.com/project-artel/artel-sdk/blob/develop/Packages/kr.artel.sdk/README.md) — attribute reference (in develop once artel-sdk#142 merges)
+- [Protocol](https://github.com/project-artel/artel-sdk/blob/develop/docs/protocol.md) — `invoke_cheat`, `start_behavior`, `stop_behavior`, `extend_behavior`, `GAME_FUNCTION_CATALOG`, `BEHAVIOR_ENDED`
+- [ADR 0007](https://github.com/project-artel/artel-sdk/blob/develop/docs/adr/0007-game-registered-cheats-and-behaviors.md) — why cheats are generic actions and not part of the SDK vocabulary
+- [Design and wire contract](https://github.com/project-artel/artel/tree/main/.plan/general) — `2026-10-13-game-registered-cheats-for-the-qa-agent.md`, `2026-10-13-game-registered-behaviors-the-agent-runs-in-background.md`, `2026-10-14-game-functions-wire-contract.md` (in main once artel#20 merges)
+- [WordVenture implementation](https://github.com/project-artel/word-venture/blob/main/Assets/Scripts/Artel/WordVentureGameFunctions.cs) — the same file as `references/wordventure-example.cs` (in main once word-venture#10 merges)
