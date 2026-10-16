@@ -12,10 +12,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Bench-only cheats and behaviors for WordVenture (ARTEL-1052). Not committed anywhere.
-/// Every call goes through the same methods the UI calls.
+/// ARTEL QA agent 가 부르는 치트와 behavior(ARTEL-1052). 에디터와 개발 빌드에서만 등록되고, 출시 빌드에서는
+/// SDK 가 아무것도 만들지 않는다. 모든 호출은 UI 가 부르는 것과 같은 게임 메서드를 지난다.
 /// </summary>
-public static class BenchGameFunctions
+public static class WordVentureGameFunctions
 {
     // ---- when: conditions (null = available, otherwise the reason) ----
 
@@ -105,7 +105,7 @@ public static class BenchGameFunctions
     static StageDataSingleton EnsureStageData()
     {
         if (StageDataSingleton.Instance == null)
-            new GameObject("StageDataSingleton (bench)").AddComponent<StageDataSingleton>();
+            new GameObject("StageDataSingleton (cheat)").AddComponent<StageDataSingleton>();
         return StageDataSingleton.Instance;
     }
 
