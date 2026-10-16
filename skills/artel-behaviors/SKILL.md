@@ -25,6 +25,7 @@ Files next to this one:
 - [`references/choosing-behaviors.md`](references/choosing-behaviors.md) — which behaviors to make, and which not to
 - [`references/lifecycle.md`](references/lifecycle.md) — how a behavior ends, the wire actions, every failure message
 - [`references/wordventure-example.cs`](references/wordventure-example.cs) — `auto_cast_spells` and `pass_turns` in WordVenture
+- [`../artel-cheats/references/compile-guard.md`](../artel-cheats/references/compile-guard.md) — the `#if ARTEL_GAME_FUNCTIONS` wrap every behavior file needs
 
 ## Before you start
 
@@ -35,10 +36,18 @@ Files next to this one:
    calls, the input lock the game uses during animations, and how the game signals that a fight or
    level ended.
 3. **Decide which behaviors to make** with `references/choosing-behaviors.md`.
+4. **Wrap the whole file in `#if ARTEL_GAME_FUNCTIONS` ... `#endif`**, `using` lines included, the
+   same way as cheats. The SDK defines the symbol from the version that ships behaviors and removes
+   it when the package is removed, so a project without that SDK still compiles. This is the only
+   game-side step: no Editor script, no hand-typed define, and no game symbol may start with
+   `ARTEL_`. The cases the SDK cannot fix (SDK removed with the editor closed, a committed define
+   on a machine with an older SDK) and the asmdef alternative are in
+   [`../artel-cheats/references/compile-guard.md`](../artel-cheats/references/compile-guard.md).
 
 ## Write a behavior
 
 ```csharp
+#if ARTEL_GAME_FUNCTIONS
 using System.Collections;
 using Artel;
 
@@ -67,6 +76,7 @@ public static class MyGameFunctions
         }
     }
 }
+#endif
 ```
 
 - **One loop iteration is one frame.** `yield return null` and `WaitForSeconds` work.
@@ -84,7 +94,8 @@ public static class MyGameFunctions
 
 ## Verify
 
-1. Compile, make a development build, and check the catalog lists the behavior with its `group`
+1. Compile, confirm Player Settings > Scripting Define Symbols contains `ARTEL_GAME_FUNCTIONS`,
+   make a development build, and check the catalog lists the behavior with its `group`
    and parameters (the artel-cheats skill shows the commands).
 2. Start it on a local server and watch it end by itself:
 

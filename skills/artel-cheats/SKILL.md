@@ -19,6 +19,7 @@ Files next to this one:
 
 - [`references/choosing-cheats.md`](references/choosing-cheats.md) — which cheats to make, and which not to
 - [`references/reference.md`](references/reference.md) — attribute rules, the wire action, every failure message
+- [`references/compile-guard.md`](references/compile-guard.md) — the `#if ARTEL_GAME_FUNCTIONS` wrap, who sets the define, the cases it cannot fix
 - [`references/wordventure-example.cs`](references/wordventure-example.cs) — a real implementation (WordVenture)
 
 ## Before you start
@@ -31,20 +32,50 @@ Files next to this one:
    https://github.com/project-artel/artel-sdk.git?path=/Packages/kr.artel.sdk#feat/sdk-artelcheat-artelbehavior-등록과-invoke_cheat-start_behavior-action-game_function_catalog-frame-추가-ARTEL-1052
    ```
 
-   Check: `Packages/kr.artel.sdk/Runtime/GameFunctions/ArtelCheatAttribute.cs` exists in the
-   package. If not, stop and tell the user; nothing below compiles. The artel-unity-sdk skill covers
-   installing and building.
+   Check: `Packages/kr.artel.sdk/Runtime/GameFunctions/ArtelCheatAttribute.cs` and
+   `Packages/kr.artel.sdk/Editor/GameFunctions/ArtelDefineSync.cs` exist in the package. If not,
+   stop and tell the user: with the wrap below the game still compiles, but no cheat is registered.
+   The artel-unity-sdk skill covers installing and building.
 2. **Read the game first.** List the scenes in `ProjectSettings/EditorBuildSettings.asset`, then find
    every `SceneManager.LoadScene` call, the save code (`PlayerPrefs` keys), the singletons
    (`static ... Instance`), and the methods the UI buttons call. A good cheat calls those methods.
 3. **Decide which cheats to make** with `references/choosing-cheats.md`. Ask the user which test
    cases are slow to set up; that list is better than guessing.
 4. Put the cheats in one file, for example `Assets/Scripts/Artel/<Game>GameFunctions.cs`, in an
-   assembly that references `Artel.Runtime` (`Assembly-CSharp` does by default).
+   assembly that references `Artel.Runtime` (`Assembly-CSharp` does by default), and **wrap the
+   whole file in `#if ARTEL_GAME_FUNCTIONS`** (next section).
+
+## Always wrap the file in `#if ARTEL_GAME_FUNCTIONS`
+
+Every file with `[ArtelCheat]`, `[ArtelBehavior]`, `[CheatRange]` or `ArtelBehaviorContext` starts
+with `#if ARTEL_GAME_FUNCTIONS` above its `using` lines and ends with `#endif`. Without it, a
+teammate or CI machine that has no SDK, or an SDK without cheats, gets dozens of `error CS0246` and
+the game stops building.
+
+That wrap is the only step on the game side. The SDK sets the define itself from the version that
+ships cheats: it adds `ARTEL_GAME_FUNCTIONS` on every editor load and removes all `ARTEL_` defines
+when the package is removed or changes version through the Package Manager. An older SDK or no SDK
+never defines it, so the file drops out of the compile.
+
+- Do not add an Editor script, asmdef or `csc.rsp` to the game for this, and do not type the define
+  into Player Settings.
+- `ARTEL_` is reserved for the SDK. Never define a game symbol with that prefix; the SDK removes
+  unknown `ARTEL_` defines.
+- Nothing outside the wrapped file may reference its class.
+- If the SDK was removed by editing `manifest.json` with the editor closed, or a committed
+  `ProjectSettings.asset` brings the define to a machine whose SDK has no cheats, the build breaks
+  and the SDK cannot fix it, because Unity runs no package code while scripts fail to compile.
+  Tell the user to delete `ARTEL_GAME_FUNCTIONS` once in Player Settings > Scripting Define
+  Symbols, or to update the SDK.
+- A game whose cheat file sits in its own asmdef can instead use asmdef Version Defines on
+  `kr.artel.sdk` plus Define Constraints.
+
+Details and measurements are in [`references/compile-guard.md`](references/compile-guard.md).
 
 ## Write a cheat
 
 ```csharp
+#if ARTEL_GAME_FUNCTIONS
 using Artel;
 
 public static class MyGameFunctions
@@ -58,6 +89,7 @@ public static class MyGameFunctions
         return $"stage_position={MapMove.StagePosition}";   // the agent reads this message
     }
 }
+#endif
 ```
 
 - **The description is what the agent reads** to decide when to call it. Say what state it leaves
@@ -99,7 +131,10 @@ The compile-time rules (types, names, instance methods, release builds) are in
 
 ## Verify
 
-1. Compile in the editor, then make a **development build**; release builds contain no cheats.
+1. Compile in the editor and check that Player Settings > Scripting Define Symbols now contains
+   `ARTEL_GAME_FUNCTIONS` (the SDK adds it). If it is missing, the wrapped file compiled to nothing
+   and the catalog will be empty: the SDK is too old. Then make a **development build**; release
+   builds contain no cheats.
 2. Check the registration is in the build. Names are UTF-16, so use `-el`:
 
    ```bash
