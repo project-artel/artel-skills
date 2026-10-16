@@ -84,8 +84,8 @@ the SDK adds it on each machine anyway.
 
 This is an extra option, not a replacement for the wrap. If the cheat file sits in the game's own
 assembly definition, the asmdef can guard the whole assembly without the scripting define: add a
-**Version Define** on resource `kr.artel.sdk` whose expression is the first SDK version that ships
-cheats, defining a game-owned symbol such as `GAME_HAS_ARTEL_CHEATS`; list that symbol in
+**Version Define** on resource `kr.artel.sdk` whose expression is `0.2.0` (the first SDK version that
+ships cheats), defining a game-owned symbol such as `GAME_HAS_ARTEL_CHEATS`; list that symbol in
 **Define Constraints**; and reference `Artel.Runtime`. Unity then skips the assembly when the SDK is
 missing or too old. Keep that symbol off the `ARTEL_` prefix, which belongs to the SDK.
 `Assembly-CSharp` has no asmdef, so for most games the `#if ARTEL_GAME_FUNCTIONS` wrap stays the
