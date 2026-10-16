@@ -4,7 +4,7 @@ description: >-
   Install and connect the ARTEL Unity SDK (kr.artel.sdk) in a Unity game so the ARTEL QA agent can
   observe and drive it. Use when the user asks to "install the ARTEL SDK", "SDK 셋팅", "connect my
   Unity game to ARTEL", "the game does not register", "make a development build for ARTEL", or
-  before adding cheats and behaviors (see the artel-game-functions skill).
+  before adding cheats and behaviors (see the artel-cheats and artel-behaviors skills).
 ---
 
 # ARTEL Unity SDK setup
@@ -120,7 +120,7 @@ Registered means: `artel game list --project <id>` shows the instance as connect
 
 ## Next
 
-- Add cheats and behaviors so the QA agent can reach states quickly: artel-game-functions skill.
+- Add cheats and behaviors so the QA agent can reach states quickly: artel-cheats skill; keep giving per-frame input: artel-behaviors skill.
 - Run QA from the terminal: artel-cli skill.
 
 ## References

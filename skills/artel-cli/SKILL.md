@@ -95,7 +95,7 @@ Every command that reports a result takes `--json`; keys never disappear and unk
 | `--no-wait` | start and return |
 
 Cheats and behaviors registered in the game are on by default for a run whose build has them; see
-the artel-game-functions skill.
+the artel-cheats and artel-behaviors skills.
 
 ## Troubleshooting
 
