@@ -66,6 +66,25 @@ artel issue list --project <p>
 Every command that reports a result takes `--json`; keys never disappear and unknown values are
 `null`. `artel <group> --help` lists the rest.
 
+### Test case folders
+
+Before creating test cases, inspect the project's folders with
+`artel case folder list --project <p> --json`. Follow the user's requested classification first,
+then the project's existing folder structure. When neither provides a classification, group new
+test cases by player-facing feature, such as Combat, Inventory, or Quests.
+
+Reuse matching folders. Create a missing feature folder only when needed with
+`artel case folder create --project <p> --name <feature> --json`; add a subfeature folder with
+`--parent <folder id>` only when it helps organize the cases. Use the project's naming language.
+If a case's classification is unclear, use the existing unclassified folder, or leave it without
+a folder if none exists. Do not move existing test cases or rename, move, or restructure existing
+folders unless the user requests that work.
+
+Set each new case's `folderId` to the selected folder's returned id. For a file whose cases all
+belong in one folder, pass `--folder <folder id>` to `artel case create`; an explicit per-case
+`folderId` takes precedence over `--folder`. When leaving unclassified cases without a folder,
+omit both their `folderId` and the command's `--folder`.
+
 ### File shapes that trip people up
 
 `cases.json` (one object or an array):
