@@ -19,11 +19,12 @@ Check the game's implementation before assigning meaning. Do not infer it from t
 The agent skill itself can be installed with:
 
 ```bash
-npx skills add https://github.com/project-artel/artel-skills/tree/codex/game-identity-guide-ARTEL-1363 --skill artel-game-identities
+npx skills add https://github.com/project-artel/artel-skills/tree/game-identity-guide-preview-20261103 --skill artel-game-identities
 ```
 
 The skill and SDK implementation are currently previews. The command above selects the skill's
-preview branch. After the skill merges, `npx skills add project-artel/artel-skills --skill artel-game-identities`
+preview tag, whose name contains no slash so the skills CLI can parse it. After the skill merges,
+`npx skills add project-artel/artel-skills --skill artel-game-identities`
 can install it from the default branch. Until its SDK PR merges, use the implementation branch,
 or a reviewed commit from it. Do not claim that an older SDK or `develop` already contains it.
 In Unity, open **Window → Package Manager → + → Add package from git URL** and enter:
