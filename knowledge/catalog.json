@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "topics": [
+    {"id": "artel-unity-sdk", "title": "Unity SDK 설치와 연결", "path": "skills/artel-unity-sdk/SKILL.md", "references": []},
+    {"id": "artel-cli", "title": "CLI 설치와 QA 실행", "path": "skills/artel-cli/SKILL.md", "references": []},
+    {"id": "artel-mcp", "title": "로컬 MCP 설정", "path": "skills/artel-mcp/SKILL.md", "references": []},
+    {"id": "artel-cheats", "title": "게임 cheat 작성", "path": "skills/artel-cheats/SKILL.md", "references": ["references/choosing-cheats.md", "references/compile-guard.md", "references/reference.md", "references/wordventure-example.cs"]},
+    {"id": "artel-behaviors", "title": "게임 behavior 작성", "path": "skills/artel-behaviors/SKILL.md", "references": ["references/choosing-behaviors.md", "references/lifecycle.md", "references/wordventure-example.cs"]},
+    {"id": "artel-game-identities", "title": "Game identity 설치·등록·버전 관리", "path": "skills/artel-game-identities/SKILL.md", "references": []}
+  ]
+}
