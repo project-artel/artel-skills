@@ -6,6 +6,6 @@
     {"id": "artel-mcp", "title": "로컬 MCP 설정", "path": "skills/artel-mcp/SKILL.md", "references": []},
     {"id": "artel-cheats", "title": "게임 cheat 작성", "path": "skills/artel-cheats/SKILL.md", "references": ["references/choosing-cheats.md", "references/compile-guard.md", "references/reference.md", "references/wordventure-example.cs"]},
     {"id": "artel-behaviors", "title": "게임 behavior 작성", "path": "skills/artel-behaviors/SKILL.md", "references": ["references/choosing-behaviors.md", "references/lifecycle.md", "references/wordventure-example.cs"]},
-    {"id": "artel-game-identities", "title": "Game identity 설치·등록·버전 관리", "path": "skills/artel-game-identities/SKILL.md", "references": []}
+    {"id": "artel-game-identities", "title": "변수 메타데이터 설치·등록·관리", "path": "skills/artel-game-identities/SKILL.md", "references": []}
   ]
 }

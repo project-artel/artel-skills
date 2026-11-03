@@ -27,13 +27,13 @@ npx skills add project-artel/artel-skills --list
 | [`artel-mcp`](skills/artel-mcp/SKILL.md) | 로컬 MCP 서버를 띄워 Claude Code 나 Codex 가 게임을 직접 관측하고 조작하게 합니다 (prototype) |
 | [`artel-cheats`](skills/artel-cheats/SKILL.md) | 게임에 치트(`[ArtelCheat]`)를 구현해 QA agent 가 씬 이동, 스테이지 해금, 적 처치, 엔딩 같은 상태를 한 번에 만들게 합니다 |
 | [`artel-behaviors`](skills/artel-behaviors/SKILL.md) | 게임에 behavior(`[ArtelBehavior]`)를 구현해, QA agent 가 켜 두면 게임 안에서 매 프레임 계속 공격·시전·턴 넘기기를 하게 합니다 |
-| [`artel-game-identities`](skills/artel-game-identities/SKILL.md) | game identity attribute 설치·작성, SDK·MCP·웹 등록, build별 revision과 QA snapshot 확인 절차입니다 |
+| [`artel-game-identities`](skills/artel-game-identities/SKILL.md) | 변수 메타데이터 attribute 설치·작성, SDK·MCP·웹 등록, build별 변경 이력과 QA 기록 확인 절차입니다 |
 
 ## CLI·MCP에서 skill 안내 조회 추가
 
 이 기능을 포함한 CLI에서 `artel guide list`로 목록을, `artel guide show artel-game-identities`로 원문을 조회합니다. MCP의 `skill_guide` 도구와 `artel_guide` prompt도 같은 `knowledge/catalog.json`과 고정된 Git revision의 원문을 읽습니다. Supporting reference는 `--reference references/<파일>`로 조회할 수 있습니다. 설치된 skill과 조회한 안내의 버전이 다를 수 있으므로 응답의 revision을 확인합니다.
 
-Game identity는 현재 preview이며, SDK 설치 branch와 서버 적용 순서는 해당 skill에 명시했습니다. CLI·MCP 안내 조회는 package 설치나 게임 코드 변경을 실행하지 않습니다.
+변수 메타데이터는 현재 preview이며, SDK 설치 branch와 서버 적용 순서는 해당 skill에 명시했습니다. CLI·MCP 안내 조회는 package 설치나 게임 코드 변경을 실행하지 않습니다. 기존 `artel-game-identities` skill ID와 `ArtelGameIdentity` attribute, MCP 도구 이름은 호환성을 위해 유지합니다.
 
 처음이라면 `artel-unity-sdk` → `artel-cli` → `artel-cheats` → `artel-behaviors` 순서로 쓰면 됩니다.
 
