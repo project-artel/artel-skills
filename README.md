@@ -33,7 +33,7 @@ npx skills add project-artel/artel-skills --list
 
 이 기능을 포함한 CLI에서 `artel guide list`로 목록을, `artel guide show artel-game-identities`로 원문을 조회합니다. MCP의 `skill_guide` 도구와 `artel_guide` prompt도 같은 `knowledge/catalog.json`과 고정된 Git revision의 원문을 읽습니다. Supporting reference는 `--reference references/<파일>`로 조회할 수 있습니다. 설치된 skill과 조회한 안내의 버전이 다를 수 있으므로 응답의 revision을 확인합니다.
 
-변수 메타데이터는 현재 preview이며, SDK 설치 branch와 서버 적용 순서는 해당 skill에 명시했습니다. CLI·MCP 안내 조회는 package 설치나 게임 코드 변경을 실행하지 않습니다. 기존 `artel-game-identities` skill ID와 `ArtelGameIdentity` attribute, MCP 도구 이름은 호환성을 위해 유지합니다.
+변수 메타데이터는 `[ArtelMetadata]`로 선언합니다. 현재 preview이며 SDK 설치 branch와 서버 적용 순서는 해당 skill에 명시했습니다. CLI·MCP 안내 조회는 package 설치나 게임 코드 변경을 실행하지 않습니다. 기존 `[ArtelGameIdentity]`는 deprecated 호환 이름이며 `artel-game-identities` skill ID와 MCP 도구 이름도 유지합니다.
 
 처음이라면 `artel-unity-sdk` → `artel-cli` → `artel-cheats` → `artel-behaviors` 순서로 쓰면 됩니다.
 

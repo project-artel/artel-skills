@@ -1,7 +1,7 @@
 ---
 name: artel-game-identities
 description: >-
-  Install and use ArtelGameIdentity attributes in a Unity game, or register game value meanings
+  Install and use ArtelMetadata attributes in a Unity game, or register game value meanings
   through ARTEL MCP or the web console. Use for variable metadata (변수 메타데이터) setup, build-specific declarations,
   registration provenance, revision history, and checking the declarations a QA run used.
 ---
@@ -14,16 +14,18 @@ Use a current-state value for `Role = "current"` and a furthest-reached/count va
 Check the game's implementation before assigning meaning. Do not infer it from the name alone.
 
 The console menu is **변수 메타데이터** in Korean and **Variable metadata** in English.
-Existing identifiers `artel-game-identities`, `ArtelGameIdentity`, `GAME_IDENTITY_CATALOG`, and MCP
-tool names remain unchanged for compatibility; use variable metadata in explanations.
+Use `[ArtelMetadata]` in new game code. `[ArtelGameIdentity]` is a deprecated compatibility alias
+with the same fields and collection behavior; replace its name without changing the metadata.
+Existing identifiers `artel-game-identities`, `GAME_IDENTITY_CATALOG`, and MCP tool names remain
+unchanged for compatibility; use variable metadata in explanations.
 
 ## Install the SDK and attribute
 
-`ArtelGameIdentity` is part of the Unity package `kr.artel.sdk`; it is not installed separately.
+`ArtelMetadata` is part of the Unity package `kr.artel.sdk`; it is not installed separately.
 The agent skill itself can be installed with:
 
 ```bash
-npx skills add https://github.com/project-artel/artel-skills/tree/variable-metadata-preview-20261103 --skill artel-game-identities
+npx skills add https://github.com/project-artel/artel-skills/tree/metadata-attribute-preview-20261104 --skill artel-game-identities
 ```
 
 The skill and SDK implementation are currently previews. The command above selects the skill's
@@ -48,7 +50,7 @@ using Artel;
 
 public class StageData
 {
-    [ArtelGameIdentity(
+    [ArtelMetadata(
         Kind = "ordinal", Base = 0, Identifies = "stage", Role = "current",
         Meaning = "The stage the player has entered now",
         ChangesWhen = "Set when the player enters a stage")]
