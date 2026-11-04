@@ -1,25 +1,31 @@
 ---
 name: artel-game-identities
 description: >-
-  Install and use ArtelGameIdentity attributes in a Unity game, or register game value meanings
-  through ARTEL MCP or the web console. Use for game identity setup, build-specific declarations,
+  Install and use ArtelMetadata attributes in a Unity game, or register game value meanings
+  through ARTEL MCP or the web console. Use for variable metadata (변수 메타데이터) setup, build-specific declarations,
   registration provenance, revision history, and checking the declarations a QA run used.
 ---
 
-# ARTEL game identity setup
+# ARTEL variable metadata setup
 
-A game identity explains what a field or property means. It declares metadata; it does not change
+Variable metadata (변수 메타데이터) explains what a field or property means. It does not change
 the value, call a getter, install a cheat, or automatically make an unobserved value readable.
 Use a current-state value for `Role = "current"` and a furthest-reached/count value for `"progress"`.
 Check the game's implementation before assigning meaning. Do not infer it from the name alone.
 
+The console menu is **변수 메타데이터** in Korean and **Variable metadata** in English.
+Use `[ArtelMetadata]` in new game code. `[ArtelGameIdentity]` is a deprecated compatibility alias
+with the same fields and collection behavior; replace its name without changing the metadata.
+Existing identifiers `artel-game-identities`, `GAME_IDENTITY_CATALOG`, and MCP tool names remain
+unchanged for compatibility; use variable metadata in explanations.
+
 ## Install the SDK and attribute
 
-`ArtelGameIdentity` is part of the Unity package `kr.artel.sdk`; it is not installed separately.
+`ArtelMetadata` is part of the Unity package `kr.artel.sdk`; it is not installed separately.
 The agent skill itself can be installed with:
 
 ```bash
-npx skills add https://github.com/project-artel/artel-skills/tree/game-identity-guide-preview-20261103 --skill artel-game-identities
+npx skills add https://github.com/project-artel/artel-skills/tree/metadata-attribute-preview-20261104 --skill artel-game-identities
 ```
 
 The skill and SDK implementation are currently previews. The command above selects the skill's
@@ -44,7 +50,7 @@ using Artel;
 
 public class StageData
 {
-    [ArtelGameIdentity(
+    [ArtelMetadata(
         Kind = "ordinal", Base = 0, Identifies = "stage", Role = "current",
         Meaning = "The stage the player has entered now",
         ChangesWhen = "Set when the player enters a stage")]
@@ -67,7 +73,7 @@ the member itself is also development-only. Follow the installed package's attri
 | `Meaning`, `ChangesWhen` | Nonblank; max 500 characters each |
 
 The generated `Type.member` name must fit 200 characters. Renaming the type/member changes its
-identity name; it does not rewrite older declarations or QA records.
+metadata entry name; it does not rewrite older declarations or QA records.
 
 ## Connect and verify a build
 
@@ -83,17 +89,19 @@ artel game start --build ./Build/Game.exe --project <project-id>
 artel game list --project <project-id>
 ```
 
-A connected instance alone does not prove the declarations arrived. In the console, open that build's
-game identity list, or call MCP `list_identities` with `game_build_id`. Verify the exact name, meaning,
-`source=SDK`, version, and build. Check SDK warnings if the catalog is missing. Fix all invalid or
+A connected instance alone does not prove the metadata arrived. In the console, open
+**프로젝트 데이터 → 변수 메타데이터** (**Project data → Variable metadata**), select the build,
+or call MCP `list_identities` with `game_build_id`. Verify the exact name, meaning,
+`source=SDK`, and game build. The console's normal list hides declaration revision numbers;
+revision numbers are used for history and API concurrency checks. Check SDK warnings if the catalog is missing. Fix all invalid or
 duplicate attributes and reconnect; a failed scan is not treated as an empty catalog.
 
 Metadata is not a value subscription. Verify separately that the QA observation path can read the
-member. Observe names use `Type::member`; game identity names use `Type.member`. Do not interchange them.
+member. Observe names use `Type::member`; variable metadata names use `Type.member`. Do not interchange them.
 
 ## Register through MCP or web
 
-The identity tools belong to the hosted **artel-macro-mcp**, not the local MCP prototype in
+The variable metadata tools belong to the hosted **artel-macro-mcp**, not the local MCP prototype in
 `artel-mcp`. Ask for the configured server host if it is not already available; do not invent one.
 For Claude Code, add it with `claude mcp add --transport http artel-macro https://<host>/mcp`,
 then authenticate through `/mcp` and the browser's ARTEL sign-in/consent flow. For Codex, configure
@@ -119,8 +127,8 @@ or `0` if it has never existed in that build. A deleted binding still has a vers
 ```
 
 Use `identity_history(name=...)` for previous revisions and `delete_identity` with the build and
-expected version to remove a declaration from that build. In the web console, open a build's game
-identity section to register, edit, delete, restore a deleted name, and inspect history.
+expected version to remove metadata from that build. In the web console, open **변수 메타데이터**
+(**Variable metadata**) and select a build to register, edit, delete, restore a deleted name, and inspect history.
 On a conflict, read the build again and reconcile the change; do not retry with a guessed version.
 
 ## Provenance and version rules
