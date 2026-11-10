@@ -20,9 +20,15 @@ launch.
 Use for requests such as "Check that players can finish the main things they
 do in this game." Select one representative path per key player goal from the
 game requirements and scope, such as completing the tutorial, winning the
-first match, or claiming its reward. The path may cross multiple screens.
-Judge the goal's observable outcome. Include alternate routes or conditions
-when the user requests them or they define a distinct in-scope goal.
+first match, or claiming its reward. Write a separate case for each major
+checkpoint where a failure would block progress, and for the goal's observable
+outcome. If the selected path starts a new game, include separate cases for
+the title screen appearing, the new-game action starting a new session, and
+entry into the first playable encounter or equivalent. Keep these as explicit
+verdicts when they also serve as preconditions for later cases.
+
+Include alternate routes or conditions when the user requests them or they
+define a distinct in-scope goal.
 
 ## Screen-by-screen checks
 
