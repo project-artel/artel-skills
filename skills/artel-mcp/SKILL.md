@@ -84,7 +84,9 @@ agent judges the screen the action produced, not the one before it.
 
 ## Limits of the prototype
 
-- No cheat or behavior tools yet; game functions (artel-cheats and artel-behaviors skills) need the hosted stack.
+- Use the hosted `game_function_guide` to author `[ArtelGameFunction]` methods and
+  `list_game_functions` to verify which read-only, setup, or running functions
+  a development build registered. QA executes them inside a run.
 - No test case generation, scenario feasibility check, dashboard, or knowledge search.
 - macOS scripts in the repository build the sample; on Windows build with the Unity command line.
 
