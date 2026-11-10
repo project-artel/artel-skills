@@ -13,6 +13,19 @@ As the coding agent, author cases and review them before saving. The QA agent ru
 them in the game build. Base each case on the controls and evidence available to
 the QA agent, even when you can see more in the source.
 
+## Coverage selection
+
+Before generating new cases, use [references/coverage-presets.md](references/coverage-presets.md)
+to translate the user's request into a coverage preset for each area. Apply
+explicit area instructions first. Default to Core gameplay flows where the user
+has left the depth open. Ask one focused question only if two plausible
+interpretations would materially change the case list. Honor explicit requests
+for particular conditions or variants within the chosen scope.
+
+Report the preset and scope used for each area alongside the cases. For
+exhaustive content coverage, report how many identified items have authorable
+cases and name items whose cases still need verification or are deferred.
+
 ## Candidate selection
 
 1. Identify the project and target build. Review existing cases and state names;
