@@ -44,7 +44,7 @@ npx skills add project-artel/artel-skills --list
 | --- | --- |
 | `artel-cheats` | `references/choosing-cheats.md` (어떤 치트를 만들고 어떤 것은 만들지 않는가), `references/reference.md` (attribute 규칙, wire, 실패 메시지), `references/compile-guard.md` (`#if ARTEL_GAME_FUNCTIONS` 로 감싸는 이유와 SDK 가 define 을 관리하는 방식), `references/wordventure-example.cs` |
 | `artel-behaviors` | `references/choosing-behaviors.md` (어떤 behavior 를 만들고 어떤 것은 만들지 않는가), `references/lifecycle.md` (끝나는 이유 9가지, wire, 실패 메시지), `references/wordventure-example.cs` |
-| `artel-test-cases` | `references/qa-agent-runtime.md` (QA Agent의 context, 도구, Pulse와 판정 근거), `references/few-shot.md` (TC 작성·보류, 전후 피해량 비교, cheat·behavior 적용 예시) |
+| `artel-test-cases` | `references/coverage-presets.md` (빌드 스모크, 핵심 플레이 흐름, 화면별 확인, 콘텐츠 전수 확인), `references/qa-agent-runtime.md` (QA Agent의 context, 도구, Pulse와 판정 근거), `references/few-shot.md` (TC 작성·보류, 전후 피해량 비교, cheat·behavior 적용 예시) |
 | `artel-unity-sdk`, `artel-cli`, `artel-mcp` | 원본 문서가 자주 바뀌어서 복사하지 않고, 끝의 `References` 절에서 원본으로 링크합니다 |
 
 ## 다음에 만들 skill
