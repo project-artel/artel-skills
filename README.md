@@ -28,6 +28,7 @@ npx skills add project-artel/artel-skills --list
 | [`artel-cheats`](skills/artel-cheats/SKILL.md) | 게임에 치트(`[ArtelCheat]`)를 구현해 QA agent 가 씬 이동, 스테이지 해금, 적 처치, 엔딩 같은 상태를 한 번에 만들게 합니다 |
 | [`artel-behaviors`](skills/artel-behaviors/SKILL.md) | 게임에 behavior(`[ArtelBehavior]`)를 구현해, QA agent 가 켜 두면 게임 안에서 매 프레임 계속 공격·시전·턴 넘기기를 하게 합니다 |
 | [`artel-game-identities`](skills/artel-game-identities/SKILL.md) | 변수 메타데이터 attribute 설치·작성, SDK·MCP·웹 등록, build별 변경 이력과 QA 기록 확인 절차입니다 |
+| [`artel-test-cases`](skills/artel-test-cases/SKILL.md) | QA Agent가 대상 빌드에서 실행하고 판정할 수 있는 TC를 작성하고, 근거가 부족한 후보를 검토합니다 |
 
 ## CLI·MCP에서 skill 안내 조회 추가
 
@@ -43,13 +44,13 @@ npx skills add project-artel/artel-skills --list
 | --- | --- |
 | `artel-cheats` | `references/choosing-cheats.md` (어떤 치트를 만들고 어떤 것은 만들지 않는가), `references/reference.md` (attribute 규칙, wire, 실패 메시지), `references/compile-guard.md` (`#if ARTEL_GAME_FUNCTIONS` 로 감싸는 이유와 SDK 가 define 을 관리하는 방식), `references/wordventure-example.cs` |
 | `artel-behaviors` | `references/choosing-behaviors.md` (어떤 behavior 를 만들고 어떤 것은 만들지 않는가), `references/lifecycle.md` (끝나는 이유 9가지, wire, 실패 메시지), `references/wordventure-example.cs` |
+| `artel-test-cases` | `references/coverage-presets.md` (빌드 스모크, 핵심 플레이 흐름, 화면별 확인, 콘텐츠 전수 확인), `references/qa-agent-runtime.md` (QA Agent의 context, 도구, Pulse와 판정 근거), `references/few-shot.md` (TC 작성·보류, 전후 피해량 비교, cheat·behavior 적용 예시) |
 | `artel-unity-sdk`, `artel-cli`, `artel-mcp` | 원본 문서가 자주 바뀌어서 복사하지 않고, 끝의 `References` 절에서 원본으로 링크합니다 |
 
 ## 다음에 만들 skill
 
 | 후보 | 하는 일 | 근거 문서 |
 | --- | --- | --- |
-| `artel-test-cases` | 기획서에서 test case 와 시나리오를 만들고, 일부러 실패해야 하는 step 의 기대값까지 붙여 등록 | [CLI README](https://github.com/project-artel/artel-cli/blob/main/README.md), [benchmarks README](https://github.com/project-artel/artel/blob/main/benchmarks/README.md) |
 | `artel-qa-results` | QA run 결과를 정답지와 비교해 읽고, `steps_passed` 를 점수로 읽지 않게 함 | [benchmarks README](https://github.com/project-artel/artel/blob/main/benchmarks/README.md) |
 | `artel-local-stack` | orchestration, agent-server, 게임을 이 컴퓨터에서 띄워 실제 QA run 을 돌림 | [qa-run-local skill](https://github.com/project-artel/artel/blob/main/.agents/skills/qa-run-local/SKILL.md) |
 | `artel-ci` | CI 에서 `ARTEL_TOKEN` 으로 빌드를 띄우고 QA 결과로 job 을 통과·실패시킴 | [CLI README](https://github.com/project-artel/artel-cli/blob/main/README.md) |
