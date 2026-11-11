@@ -10,6 +10,12 @@ description: >-
 
 # ARTEL one-time Game Functions
 
+Check the game's installed SDK for `ArtelGameFunctionMode.Setup` and
+`ArtelGameFunctionMode.ReadOnly` before using these examples. When a mode is
+unavailable, use the `[ArtelCheat]` examples below for setup and use the UI or
+existing observations for assertions. Flag any missing observation during case
+review.
+
 Use `[ArtelGameFunction("description", ArtelGameFunctionMode.Setup)]` for a function
 that prepares a test precondition. Use `ArtelGameFunctionMode.ReadOnly` to return a
 short string from the live game without changing state. Prefer a read-only function

@@ -84,9 +84,10 @@ agent judges the screen the action produced, not the one before it.
 
 ## Limits of the prototype
 
-- Use the hosted `game_function_guide` to author `[ArtelGameFunction]` methods and
-  `list_game_functions` to verify which read-only, setup, or running functions
-  a development build registered. QA executes them inside a run.
+- Game function tools require the hosted stack. If the hosted MCP exposes
+  `game_function_guide` and `list_game_functions`, use them to check which
+  registration modes the installed SDK supports and which functions the
+  development build registered. QA executes registered functions inside a run.
 - No test case generation, scenario feasibility check, dashboard, or knowledge search.
 - macOS scripts in the repository build the sample; on Windows build with the Unity command line.
 

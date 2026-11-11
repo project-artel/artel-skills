@@ -120,7 +120,7 @@ Registered means: `artel game list --project <id>` shows the instance as connect
 
 ## Next
 
-- Register Game Functions for read-only queries and test setup with the artel-cheats skill, or for sustained play with the artel-behaviors skill.
+- Use the artel-cheats and artel-behaviors skills to register functions supported by the installed SDK for test setup, observations, or sustained play.
 - Run QA from the terminal: artel-cli skill.
 
 ## References

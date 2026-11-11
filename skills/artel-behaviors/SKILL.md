@@ -11,13 +11,12 @@ description: >-
 
 # ARTEL behaviors
 
-Register new routines with
-`[ArtelGameFunction("description", ArtelGameFunctionMode.Behavior)]`. The QA Agent
-starts them with `call_game_function` and uses the returned behavior ID to stop
-or extend them. `[ArtelBehavior]` remains supported for existing games.
-Use `ArtelGameFunctionMode.ReadOnly` for a value that can be read once, such as
-current XP. It returns a value without starting a routine or changing game
-state. See the [one-time function skill](../artel-cheats/SKILL.md).
+Check the game's installed SDK for `ArtelGameFunctionMode.Behavior` before
+using `[ArtelGameFunction("description", ArtelGameFunctionMode.Behavior)]`.
+Use `[ArtelBehavior]` when the installed SDK lacks that mode. When the hosted
+QA Agent exposes `call_game_function` for the registered routine, use the
+returned behavior ID to stop or extend it. See the
+[one-time function skill](../artel-cheats/SKILL.md) for reading values such as XP.
 
 A behavior is an `IEnumerator` method that the SDK runs one step per frame inside the game until it
 ends or is stopped. The QA agent starts it with one tool call and keeps thinking and observing while
